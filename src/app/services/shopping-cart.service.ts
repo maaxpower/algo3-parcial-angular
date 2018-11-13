@@ -34,4 +34,6 @@ export class ShoppingCartService {
   }
 
 }
+//punto1
+
 export const REST_SERV_URL = "http://shopping-cart.y9fyqbatm4.us-west-2.elasticbeanstalk.com/productos"

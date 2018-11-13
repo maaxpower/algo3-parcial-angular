@@ -16,5 +16,4 @@ export class Usuario{
       usuario.shoppingCart = ShoppingCart.fromJSON(usuarioJson.shoppingCart)
       return usuario
     }
-
-}
+     }

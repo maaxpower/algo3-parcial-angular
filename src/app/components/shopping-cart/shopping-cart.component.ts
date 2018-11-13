@@ -26,6 +26,7 @@ export class ShoppingCartComponent implements OnInit {
       const productos = await this.shoppingCartService.getProductos()
       this.shoppingCart = new ShoppingCart(productos)
       this.usuario = await this.shoppingCartService.getUsuarioLogueado()
+      // console.log(this.usuario)
     } catch (e) {
       this.errorMessage = e
     }
@@ -38,4 +39,16 @@ export class ShoppingCartComponent implements OnInit {
   quitarProducto(producto) {
     this.usuario.shoppingCart.quitarProducto(producto)
   }
+
+  finalizarCompra(){
+    try{
+      this.validarCompra()
+    }catch(error){
+    this.errorMessage = error
+    }
+   }
+    validarCompra(){
+      if(this.usuario.saldo < this.usuario.shoppingCart.getTotal())
+        throw ("No tiene saldo suficiente")
+    }
 }

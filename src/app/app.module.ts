@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { HttpModule } from '@angular/http';
@@ -15,6 +15,7 @@ library.add(faPlus, faShoppingCart, faMinus)
 @NgModule({
   declarations: [
     AppComponent,
+    routingComponents,
     ShoppingCartComponent
   ],
   imports: [

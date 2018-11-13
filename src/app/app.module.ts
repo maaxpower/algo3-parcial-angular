@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { HttpModule } from '@angular/http';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -19,6 +20,7 @@ library.add(faPlus, faShoppingCart, faMinus)
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpModule,
     FontAwesomeModule
   ],
   providers: [],

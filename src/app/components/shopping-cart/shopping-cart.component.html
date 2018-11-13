@@ -10,7 +10,7 @@
     <div class="navbar-nav mr-auto">
     </div>
 
-    <span class="ml-auto navbar-text">{{usuario.username}} ${{usuario.saldo}}</span>
+    <span class="ml-auto navbar-text">{{usuario?.username}} ${{usuario?.saldo}}</span>
 
   </div>
 </nav>
@@ -24,7 +24,7 @@
     </div>
 
     <div class="card-body">
-      <div class="row" *ngFor="let producto of shoppingCart.productos">
+      <div class="row" *ngFor="let producto of shoppingCart?.productos">
 
         <div class="col-12 col-sm-12 col-md-2 text-center">
           <img class="img-fluid img-thumbnail" src="producto.urlImagen">
@@ -68,7 +68,7 @@
       <div class="row">
 
         <div class="col">
-          Total: <b>${{usuario.shoppingCart.getTotal()}}</b>
+          Total: <b>${{usuario?.shoppingCart.getTotal()}}</b>
         </div>
 
         <div class="col">

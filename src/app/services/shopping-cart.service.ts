@@ -1,12 +1,14 @@
+import { Component } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Usuario } from '../domain/usuario';
 import { Producto } from '../domain/producto';
+import { Http } from "@angular/http"
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ShoppingCartService {
+export class StubShoppingCartService {
 
   constructor() { }
 
@@ -28,12 +30,26 @@ export class ShoppingCartService {
       { "titulo": "Google Chromecast 2da Generación", "descripcion": "Chromecast. Youtube y Netflix en tu TV", "precioUnitario": 1899, "urlImagen": "assets/images/chromecast.png" },
       { "titulo": "Cargador Portatil Power Bank Tp Link Pb 15600", "descripcion": "Cargador portatil 15600mah", "precioUnitario": 1395, "urlImagen": "assets/images/tplink.png" }
     ]
-    // this.http.get(REST_SERV_URL + )
-
     return jsonProductos.map(prod => { return Producto.fromJSON(prod) })
   }
 
 }
-//punto1
+@Injectable({
+  providedIn: 'root'
+})
+export class ShoppingCartService {
 
-export const REST_SERV_URL = "http://shopping-cart.y9fyqbatm4.us-west-2.elasticbeanstalk.com/productos"
+  constructor(private http: Http) { }
+
+  async getUsuarioLogueado() {
+    const res = await this.http.get(REST_SERV_URL + "/usuarioLogueado").toPromise()
+    return Usuario.fromJSON(res.json())
+  }
+
+  async getProductos() {
+    const res = await this.http.get(REST_SERV_URL + "/productos").toPromise()
+    return res.json().map(Producto.fromJSON)
+  }
+
+}
+export const REST_SERV_URL = "http://shopping-cart.y9fyqbatm4.us-west-2.elasticbeanstalk.com"

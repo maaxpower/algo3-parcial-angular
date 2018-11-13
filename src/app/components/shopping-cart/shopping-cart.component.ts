@@ -16,19 +16,26 @@ export class ShoppingCartComponent implements OnInit {
   usuario: Usuario
   shoppingCart: ShoppingCart
   productos: Producto[]
+  errorMessage = ""
 
   constructor(private shoppingCartService: ShoppingCartService) {
   }
 
-  ngOnInit() {
-    const productos = this.shoppingCartService.getProductos()
-    this.shoppingCart = new ShoppingCart(productos)
-    this.usuario = this.shoppingCartService.getUsuarioLogueado()
+  async ngOnInit() {
+    try {
+      const productos = await this.shoppingCartService.getProductos()
+      this.shoppingCart = new ShoppingCart(productos)
+      this.usuario = await this.shoppingCartService.getUsuarioLogueado()
+    } catch (e) {
+      this.errorMessage = e
+    }
   }
-  agregarProducto(producto){
+
+  agregarProducto(producto) {
     this.usuario.shoppingCart.agregarProducto(producto)
   }
-  quitarProducto(producto){
+
+  quitarProducto(producto) {
     this.usuario.shoppingCart.quitarProducto(producto)
   }
 }

@@ -2,7 +2,7 @@ export class Producto {
 
     titulo: string
     precioUnitario: number
-    urlImagen: string
+    urlImagen: string 
     descripcion: string
 
     static fromJSON(jsonProducto): Producto {

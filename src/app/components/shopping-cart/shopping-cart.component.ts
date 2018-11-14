@@ -44,6 +44,7 @@ export class ShoppingCartComponent implements OnInit {
     try{
       this.validarCompra()
       this.navegarPedidoFinalizado()
+      this.restarSaldo()
       this.agregarPedido(this.usuario.shoppingCart)
     }catch(error){
     this.errorMessage = error
@@ -56,5 +57,8 @@ export class ShoppingCartComponent implements OnInit {
 
     navegarPedidoFinalizado(){
       this.router.navigate(['/pedido-finalizado'])
+    }
+    restarSaldo(){
+      this.usuario.saldo = this.usuario.saldo - this.usuario.shoppingCart.getTotal()
     }
 }

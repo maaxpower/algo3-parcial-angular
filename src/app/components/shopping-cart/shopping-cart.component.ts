@@ -43,9 +43,9 @@ export class ShoppingCartComponent implements OnInit {
   finalizarCompra(){
     try{
       this.validarCompra()
-      this.navegarPedidoFinalizado()
+      // this.navegarPedidoFinalizado()
       this.restarSaldo()
-      this.agregarPedido(this.usuario.shoppingCart)
+      // this.agregarPedido(this.usuario.shoppingCart)
     }catch(error){
     this.errorMessage = error
     }

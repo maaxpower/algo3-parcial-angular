@@ -40,6 +40,8 @@ export class StubShoppingCartService {
 export class ShoppingCartService {
 
   constructor(private http: Http) { }
+  
+  carrito: ShoppingCartService
 
   async getUsuarioLogueado() {
     const res = await this.http.get(REST_SERV_URL + "/usuarioLogueado").toPromise()
@@ -50,6 +52,11 @@ export class ShoppingCartService {
     const res = await this.http.get(REST_SERV_URL + "/productos").toPromise()
     return res.json().map(Producto.fromJSON)
   }
-
+  agregarPedido(shoppingCart: ShoppingCart){
+    this.carrito = shoppingCart
+  }
+  getPedido(){
+    return this.carrito
+  }
 }
 export const REST_SERV_URL = "http://shopping-cart.y9fyqbatm4.us-west-2.elasticbeanstalk.com"

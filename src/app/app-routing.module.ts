@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/shopping-cart', pathMatch: 'full' },
   { path: 'shopping-cart', component: ShoppingCartComponent },
 { path: 'pedido-finalizado', component: PedidoFinalizadoComponent }];
-]
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

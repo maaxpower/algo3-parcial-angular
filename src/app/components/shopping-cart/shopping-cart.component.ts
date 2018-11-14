@@ -3,6 +3,7 @@ import { Producto } from '../../domain/producto';
 import { ShoppingCart } from '../../domain/shoppingCart';
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -18,7 +19,7 @@ export class ShoppingCartComponent implements OnInit {
   productos: Producto[]
   errorMessage = ""
 
-  constructor(private shoppingCartService: ShoppingCartService) {
+  constructor(private shoppingCartService: ShoppingCartService, private router: Router) {
   }
 
   async ngOnInit() {
@@ -26,7 +27,6 @@ export class ShoppingCartComponent implements OnInit {
       const productos = await this.shoppingCartService.getProductos()
       this.shoppingCart = new ShoppingCart(productos)
       this.usuario = await this.shoppingCartService.getUsuarioLogueado()
-      // console.log(this.usuario)
     } catch (e) {
       this.errorMessage = e
     }
@@ -43,6 +43,8 @@ export class ShoppingCartComponent implements OnInit {
   finalizarCompra(){
     try{
       this.validarCompra()
+      this.navegarPedidoFinalizado()
+      this.agregarPedido(this.usuario.shoppingCart)
     }catch(error){
     this.errorMessage = error
     }
@@ -50,5 +52,9 @@ export class ShoppingCartComponent implements OnInit {
     validarCompra(){
       if(this.usuario.saldo < this.usuario.shoppingCart.getTotal())
         throw ("No tiene saldo suficiente")
+    }
+
+    navegarPedidoFinalizado(){
+      this.router.navigate(['/pedido-finalizado'])
     }
 }

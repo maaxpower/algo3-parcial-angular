@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../domain/usuario';
 import { Producto } from '../domain/producto';
 import { Http } from "@angular/http"
+import { ShoppingCart } from '../domain/shoppingCart';
 
 
 @Injectable({
@@ -40,8 +41,8 @@ export class StubShoppingCartService {
 export class ShoppingCartService {
 
   constructor(private http: Http) { }
-  
-  carrito: ShoppingCartService
+
+  carrito: ShoppingCart
 
   async getUsuarioLogueado() {
     const res = await this.http.get(REST_SERV_URL + "/usuarioLogueado").toPromise()
@@ -52,10 +53,10 @@ export class ShoppingCartService {
     const res = await this.http.get(REST_SERV_URL + "/productos").toPromise()
     return res.json().map(Producto.fromJSON)
   }
-  agregarPedido(shoppingCart: ShoppingCart){
+  agregarPedido(shoppingCart: ShoppingCart) {
     this.carrito = shoppingCart
   }
-  getPedido(){
+  getPedido() {
     return this.carrito
   }
 }
